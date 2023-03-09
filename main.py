@@ -5,7 +5,7 @@ from game import Game
 pygame.init()
 
 # Genere la fenetre de jeu
-pygame.display.set_caption("EpicGameEnSueur")
+pygame.display.set_caption("CommetFallGame")
 # taille en pixel de la fenetre (x,y)screen pour recup la surface
 screen = pygame.display.set_mode((1080, 720))
 
