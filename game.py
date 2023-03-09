@@ -7,14 +7,14 @@ class Game:
 
     def __init__(self):
         #definir si le jeu a commencé ou non
-        self.is_playing = True
+        self.is_playing = False
         # genere le joueur
         self.all_players = pygame.sprite.Group()
         self.player = Player(self)
         self.all_players.add(self.player)
 
         # générer l'evenement
-        self.comet_event = CometFallEvent()
+        self.comet_event = CometFallEvent(self)
 
         #Groupe de monstre
         self.all_monsters = pygame.sprite.Group()
@@ -28,7 +28,9 @@ class Game:
     def game_over(self):
         # remettre le jeu à neuf, retirer les monstres, remettre le joueur à 100 de vie
         self.all_monsters = pygame.sprite.Group()
+        self.comet_event.all_comets = pygame.sprite.Group()
         self.player.health = self.player.max_health
+        self.comet_event.reset_percent()
         self.is_playing = False
 
     def update(self, screen):
@@ -50,6 +52,10 @@ class Game:
         for monster in self.all_monsters:
             monster.forward()
             monster.update_health_bar(screen)
+
+        #recuperer les comettes de notre jeu
+        for comet in self.comet_event.all_comets:
+            comet.fall()
 
         # applique l'ensemble des images de mon groupe projectile
         self.player.all_projectiles.draw(screen)

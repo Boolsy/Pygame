@@ -10,7 +10,7 @@ class Player(pygame.sprite.Sprite):
         self.game = game
         self.health = 100
         self.max_health = 100
-        self.attack = 10
+        self.attack = 50
         self.velocity = 3
         self.all_projectiles = pygame.sprite.Group()
         self.image = pygame.image.load('Assets/player.png')
